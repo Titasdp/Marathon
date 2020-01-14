@@ -1,12 +1,28 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <router-link to="/">Home</router-link>|
+      <router-link to="/addRun">Add Run</router-link>|
+      <router-link to="/runController">Control Runs</router-link>
     </div>
     <router-view />
   </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {};
+  },
+  created() {
+    if (JSON.parse(localStorage.getItem("runnings"))) {
+      this.$store.commit("SET_RUNNINGS", {
+        runnings: JSON.parse(localStorage.getItem("runnings"))
+      });
+    }
+  }
+};
+</script>
 
 <style>
 #app {
